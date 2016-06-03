@@ -27,7 +27,7 @@
   "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
   "dependencies": {
     "express": "4.13.4",
-    "graphql-tools": "^0.3.6"
+    "graphql-tools": "^0.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
@@ -41,6 +41,7 @@
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-import": "^1.1.0",
     "eslint-plugin-react": "^4.2.3",
+    "graphql": "^0.5.0",
     "nodemon": "^1.9.1"
   },
   "eslintConfig": {
