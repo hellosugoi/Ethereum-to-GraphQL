@@ -1,4 +1,4 @@
-# apollo-starter-kit
+# apollo-tutorial-kit (formerly apollo-starter-kit)
 **Note: The Tutorial uses Apollo Server v0.1, which is not the current version. To get to the current version, follow the tutorial, and then update following this [migration guide](http://dev.apollodata.com/tools/apollo-server/migration.html).**
 
 Starting point for the Apollo GraphQL Server tutorial.
