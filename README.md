@@ -1,5 +1,4 @@
 # apollo-tutorial-kit (formerly apollo-starter-kit)
-**Note: The Tutorial uses Apollo Server v0.1, which is not the current version. To get to the current version, follow the tutorial, and then update following this [migration guide](http://dev.apollodata.com/tools/apollo-server/migration.html).**
 
 Starting point for the Apollo GraphQL Server tutorial.
 
@@ -16,7 +15,7 @@ npm install
 npm run start
 ```
 
-Then open [http://localhost:8080/graphql](http://localhost:8080/graphql)
+Then open [http://localhost:3000/graphiql](http://localhost:3000/graphql)
 
 When you paste this on the left side of the page:
 
