@@ -6,6 +6,5 @@
     "stage-0"
   ],
   "plugins": [
-    "babel-plugin-inline-import"
   ]
 }
