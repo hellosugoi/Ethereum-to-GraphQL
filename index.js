@@ -18,9 +18,12 @@ ${createFnQueryLines}
 `
 
 const temporary2 = `
-type candy {
+type Value {
   string: String
   int: Int
+}
+type candy {
+  value: Value
 }
 type Query {
   candy: candy
@@ -58,7 +61,7 @@ type Query {
 //   }
 // `
 
-var schema = buildSchema(temporary1);
+var schema = buildSchema(temporary2);
 
 // const other = require('./lib/methods/other')
 // const returns2 = require('./lib/methods/returns2')
