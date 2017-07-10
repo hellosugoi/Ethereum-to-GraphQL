@@ -1,0 +1,169 @@
+{
+  "contract_name": "MetaCoin",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "returns2",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "getBalanceInEth",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "other",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "sendCoin",
+      "outputs": [
+        {
+          "name": "sufficient",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000c57fe5b5b600160a060020a033216600090815260208190526040902061271090555b5b6103808061003b6000396000f300606060405263ffffffff60e060020a60003504166325808295811461004d5780637bd703e81461008257806385295877146100b057806390b98a1114610151578063f8b2cb4f14610184575bfe5b341561005557fe5b610069600160a060020a03600435166101b2565b6040805192835290151560208301528051918290030190f35b341561008a57fe5b61009e600160a060020a03600435166101d3565b60408051918252519081900360200190f35b34156100b857fe5b6100c061025a565b604080516020808201859052918101839052606080825285519082015284519091829160808301918701908083838215610115575b80518252602083111561011557601f1990920191602091820191016100f5565b505050905090810190601f1680156101415780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b341561015957fe5b610170600160a060020a036004351660243561028b565b604080519115158252519081900360200190f35b341561018c57fe5b61009e600160a060020a0360043516610323565b60408051918252519081900360200190f35b600160a060020a03811660009081526020819052604090205460015b915091565b600073__ConvertLib____________________________6396e4ee3d6101f884610323565b60026000604051602001526040518363ffffffff1660e060020a028152600401808381526020018281526020019250505060206040518083038186803b151561023d57fe5b6102c65a03f4151561024b57fe5b5050604051519150505b919050565b610262610342565b50604080518082019091526003815260e860020a6268657902602082015260116102585b909192565b600160a060020a033316600090815260208190526040812054829010156102b45750600061031d565b600160a060020a0333811660008181526020818152604080832080548890039055938716808352918490208054870190558351868152935191937fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929081900390910190a35060015b92915050565b600160a060020a0381166000908152602081905260409020545b919050565b604080516020810190915260008152905600a165627a7a72305820f5e86f4bbee472da50c43c03647484972b523bf4c1d76e112de56e974ae1af420029",
+  "networks": {
+    "50": {
+      "events": {
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
+      "links": {
+        "ConvertLib": "0xe131563b7860ca638119c4c65db66d554e1fa9d9"
+      },
+      "address": "0xcda7b83c3525751b150179059e5ce8145a438957",
+      "updated_at": 1499650363282
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1499650716532
+}
