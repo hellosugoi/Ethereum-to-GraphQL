@@ -41,141 +41,44 @@ const sourceFn = function({ method }) {
   } // end of input closure
 }// end of method closure
 
-const abiToGraphQlType = (input) => {
-  switch (input) {
-    case 'address':
-      return 'String'
-    default:
-      return new Error(`Unknown mapping from abi type - ${input} - to graphQL type`)
-  }
-}
-
-const abiOutputToGraphQLType = (input) => {
-  const isInt = input.includes('int')
-  if (isInt) {
-    return 'Balance'
-  }
-
-  if (input === 'bool') {
-    return 'Bool'
-  }
-  return new Error(`Unkown abi output tpe: ${input}`)
-}
-
-const getOutputType = (input) => {
-  const { type } = input[0]
-  return abiOutputToGraphQLType(type)
-}
-
-
-// console.log(MetaCoinArtifact.abi)
-// console.log(JSON.stringify(MetaCoinArtifact.abi, null, 2))
-// let queryOutput = MetaCoinArtifact.abi
-//               // .filter(item => item.name === 'getBalance')
-//               .filter(item => item.name !== 'sendCoin')
-//               .filter(item => item.name !== 'Transfer')
-//               .filter(item => item.type !== 'constructor')
-//               .reduce((total, current, index) => {
-//                 // console.log(current)
-//                 const fnName = current.name
-//                 const { name, type } = current.inputs[0]
-//                 console.log('--------')
-//                 // console.log(current.outputs)
-//                 console.log(getOutputType(current.outputs))
-//                 console.log('--------')
-//                 const graphQlType = abiToGraphQlType(type)
-//                 const outGraphQLType = getOutputType(current.outputs)
-//                 let template = `${fnName}(${name}: ${graphQlType}): ${outGraphQLType}`
-//                 return (index === 0) ? total + template : total + '\n    ' + template
-//               }, '')
-//
-//
-// const createdResolvers = MetaCoinArtifact.abi
-//               // .filter(item => item.name === 'getBalance')
-//               .filter(item => item.name !== 'sendCoin')
-//               .filter(item => item.name !== 'Transfer')
-//               .filter(item => item.type !== 'constructor')
-//               .reduce((total, current) => {
-//                 const { name } = current
-//                 total[name] = sourceFn({ method: name })
-//                 return total
-//               }, {})
-//               // .map(item => {
-//               //   const { name } = item
-//               //   return sourceFn({ method: name })
-//               // })
-
-// console.log(createdResolvers)
-// output = "type Query {" + output + "\n}"
-
-// console.log(output)
-// console.log(JSON.stringify(queryOutput, null, 2))
-// console.log('==============')
-// const ABISCHEMA = `
-//   type Balance {
-//     string: String
-//     int: Int
-//   }
-//   type Query {
-//     ${queryOutput}
-//   }
-// `
-
 const createQLType = require('./lib/createQLType')
 const createFnQueryLines = require('./lib/createFnQueryLines')
-// console.log(createQLType)
-// const temporary = createQLType
-
 const temporary1 = `
 ${createQLType}
 ${createFnQueryLines}
 `
 
-console.log(temporary1)
-
-const temporary = `
-  type Value {
-    string: String
-    int: Int
-  }
-
-  type otherOutput {
-    string: String
-    bytes32: String
-    value: Value
-  }
-
-  type returns2Output {
-    value: Value
-    boolean: Boolean
-  }
-
-  type getBalanceOutput {
-    value: Value
-  }
-
-  type Query {
-    getBalance(addr: String): getBalanceOutput
-    getBalanceInEth(addr: String): Value
-    returns2(addr: String num: Int): returns2Output
-    other: otherOutput
-  }
-`
-
-
-// console.log(ABISCHEMA)
-// Construct a schema, using GraphQL schema language
-// var schema = buildSchema(`
-//   type Balance {
+// console.log(temporary1)
+//
+// const temporary = `
+//   type Value {
 //     string: String
 //     int: Int
 //   }
-//   type Query {
-//     hello: String
-//     getBalance(addr: String): Balance
+//
+//   type otherOutput {
+//     string: String
+//     bytes32: String
+//     value: Value
 //   }
-// `);
-// var schema = buildSchema(ABISCHEMA);
+//
+//   type returns2Output {
+//     value: Value
+//     boolean: Boolean
+//   }
+//
+//   type getBalanceOutput {
+//     value: Value
+//   }
+//
+//   type Query {
+//     getBalance(addr: String): getBalanceOutput
+//     getBalanceInEth(addr: String): Value
+//     returns2(addr: String num: Int): returns2Output
+//     other: otherOutput
+//   }
+// `
+
 var schema = buildSchema(temporary1);
 
 const other = require('./lib/methods/other')
