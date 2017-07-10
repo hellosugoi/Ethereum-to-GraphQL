@@ -1,5 +1,4 @@
-
-const { buildSchema, graphql } = require('graphql');
+const { buildSchema, graphql } = require('graphql')
 const { queryTypes, allResolvers } = require('./lib/createQLType')
 const createFnQueryLines = require('./lib/createFnQueryLines')
 const schemaSource = `
@@ -21,8 +20,8 @@ it('should succesfully query a public uint value', async () => {
       }
     }
   `
-  const result = await graphql(schema, query, rootValue);
-  expect(result.data).toEqual({'candy':{'value':{'string':'6','int':6}}})
+  const result = await graphql(schema, query, rootValue)
+  expect(result.data).toEqual({ 'candy': { 'value': { 'string': '6', 'int': 6 } } })
 })
 
 it('should succesfully query a source string value', async () => {
@@ -33,7 +32,7 @@ it('should succesfully query a source string value', async () => {
       }
     }
   `
-  const result = await graphql(schema, query, rootValue);
+  const result = await graphql(schema, query, rootValue)
   expect(result.data).toEqual({ 'source': { 'string': 'source' } })
 })
 
@@ -48,8 +47,8 @@ it('should succesfully query getBalance', async () => {
     }
   }
   `
-  const result = await graphql(schema, query, rootValue);
-  expect(result.data).toEqual({'getBalance':{'value':{'string':'0','int':0}}})
+  const result = await graphql(schema, query, rootValue)
+  expect(result.data).toEqual({ 'getBalance': { 'value': { 'string': '0', 'int': 0 } } })
 })
 
 it('should succesfully query getBalanceInEth', async () => {
@@ -63,8 +62,8 @@ it('should succesfully query getBalanceInEth', async () => {
     }
   }
   `
-  const result = await graphql(schema, query, rootValue);
-  expect(result.data).toEqual({'getBalanceInEth':{'value':{'string':'0','int':0}}})
+  const result = await graphql(schema, query, rootValue)
+  expect(result.data).toEqual({ 'getBalanceInEth': { 'value': { 'string': '0', 'int': 0 } } })
 })
 
 it('should succesfully query other with multiple outputs', async () => {
@@ -80,8 +79,8 @@ it('should succesfully query other with multiple outputs', async () => {
     }
   }
   `
-  const result = await graphql(schema, query, rootValue);
-  expect(result.data).toEqual({'other':{'string':'hey','bytes32':'0x0000000000000000000000000000000000000000000000000000000000000011','value':{'string':'600','int':600}}})
+  const result = await graphql(schema, query, rootValue)
+  expect(result.data).toEqual({ 'other': { 'string': 'hey', 'bytes32': '0x0000000000000000000000000000000000000000000000000000000000000011', 'value': { 'string': '600', 'int': 600 } } })
 })
 
 it('should succesfully query returns2 with multiple inputs/outputs', async () => {
@@ -96,6 +95,6 @@ it('should succesfully query returns2 with multiple inputs/outputs', async () =>
     }
   }
   `
-  const result = await graphql(schema, query, rootValue);
-  expect(result.data).toEqual({'returns2':{'boolean':true,'value':{'string':'10000','int':10000}}})
+  const result = await graphql(schema, query, rootValue)
+  expect(result.data).toEqual({ 'returns2': { 'boolean': true, 'value': { 'string': '10000', 'int': 10000 } } })
 })

@@ -1,6 +1,6 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
+const { buildSchema } = require('graphql')
 
 const Web3 = require('web3')
 const TFcontract = require('truffle-contract')
@@ -61,7 +61,7 @@ type Query {
 //   }
 // `
 
-var schema = buildSchema(temporary2);
+var schema = buildSchema(temporary1);
 
 // const other = require('./lib/methods/other')
 // const returns2 = require('./lib/methods/returns2')
