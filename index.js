@@ -17,18 +17,18 @@ ${queryTypes}
 ${createFnQueryLines}
 `
 
-const temporary2 = `
-type Value {
-  string: String
-  int: Int
-}
-type candy {
-  value: Value
-}
-type Query {
-  candy: candy
-}
-`
+// const temporary2 = `
+// type Value {
+//   string: String
+//   int: Int
+// }
+// type candy {
+//   value: Value
+// }
+// type Query {
+//   candy: candy
+// }
+// `
 
 // console.log(temporary1)
 //
@@ -61,7 +61,7 @@ type Query {
 //   }
 // `
 
-var schema = buildSchema(temporary1);
+var schema = buildSchema(temporary1)
 
 // const other = require('./lib/methods/other')
 // const returns2 = require('./lib/methods/returns2')
@@ -70,40 +70,40 @@ var schema = buildSchema(temporary1);
 // const getCandy = require('./lib/methods/getCandy')
 
 // The root provides a resolver function for each API endpoint
-var root = {
-  getBalance: (args) => {
-    const outputMapper = outputMappers.getBalance
-    return sourceFn({ contract: MetCoinContract, method: 'getBalance', outputMapper })(...Object.values(args))
-  },
-  getBalanceInEth: (args) => {
-    const outputMapper = outputMappers.getBalanceInEth
-    return sourceFn({ contract: MetCoinContract, method: 'getBalanceInEth', outputMapper })(...Object.values(args))
-  },
-  returns2: (args) => {
-    const outputMapper = outputMappers.returns2
-    return sourceFn({ contract: MetCoinContract, method: 'returns2', outputMapper })(...Object.values(args))
-  },
-  other: () => {
-    const outputMapper = outputMappers.other
-    return sourceFn({ contract: MetCoinContract, method: 'other', outputMapper })()
-  },
-  candy: () => {
-    const outputMapper = outputMappers.candy
-    return sourceFn({ contract: MetCoinContract, method: 'candy', outputMapper })()
-  },
-  source: () => {
-    const outputMapper = outputMappers.source
-    return sourceFn({ contract: MetCoinContract, method: 'source', outputMapper })()
-  }
-};
+// const root = {
+//   getBalance: (args) => {
+//     const outputMapper = outputMappers.getBalance
+//     return sourceFn({ contract: MetCoinContract, method: 'getBalance', outputMapper })(...Object.values(args))
+//   },
+//   getBalanceInEth: (args) => {
+//     const outputMapper = outputMappers.getBalanceInEth
+//     return sourceFn({ contract: MetCoinContract, method: 'getBalanceInEth', outputMapper })(...Object.values(args))
+//   },
+//   returns2: (args) => {
+//     const outputMapper = outputMappers.returns2
+//     return sourceFn({ contract: MetCoinContract, method: 'returns2', outputMapper })(...Object.values(args))
+//   },
+//   other: () => {
+//     const outputMapper = outputMappers.other
+//     return sourceFn({ contract: MetCoinContract, method: 'other', outputMapper })()
+//   },
+//   candy: () => {
+//     const outputMapper = outputMappers.candy
+//     return sourceFn({ contract: MetCoinContract, method: 'candy', outputMapper })()
+//   },
+//   source: () => {
+//     const outputMapper = outputMappers.source
+//     return sourceFn({ contract: MetCoinContract, method: 'source', outputMapper })()
+//   }
+// }
 
 const root2 = allResolvers
 
-const app = express();
+const app = express()
 app.use('/graphql', graphqlHTTP({
   schema,
   rootValue: root2,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+  graphiql: true
+}))
+app.listen(4000)
+console.log('Running a GraphQL API server at localhost:4000/graphql')

@@ -38,9 +38,6 @@
     "nodemon": "^1.9.1",
     "standard": "^10.0.2"
   },
-  "env": {
-    "es6": true
-  },
   "standard": {
     "globals": [ "it", "expect" ]
   }
