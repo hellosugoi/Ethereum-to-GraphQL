@@ -122,22 +122,22 @@ const getOutputType = (input) => {
 // `
 
 const temporary = `
-  type Balance {
+  type Value {
     string: String
     int: Int
   }
   type otherOutput {
     string: String
     bytes32: String
-    value: Balance
+    value: Value
   }
   type returns2Output {
-    value: Balance
+    value: Value
     boolean: Boolean
   }
   type Query {
-    getBalance(addr: String): Balance
-    getBalanceInEth(addr: String): Balance
+    getBalance(addr: String): Value
+    getBalanceInEth(addr: String): Value
     returns2(addr: String): returns2Output
     other: otherOutput
   }
