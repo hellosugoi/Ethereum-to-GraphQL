@@ -3,9 +3,9 @@ const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 const Web3 = require('web3')
-const contract = require('truffle-contract')
+const TFcontract = require('truffle-contract')
 const MetaCoinArtifact = require('./build/contracts/Metacoin')
-const MetCoinContract = contract(MetaCoinArtifact)
+const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
 // let has2 = function(a, b) {
@@ -20,17 +20,17 @@ MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:85
 // tmp(...Object.values(lol))
 
 
-const sourceFn = ({ method, outputMapper, isCall = true }) => {
+const sourceFn = ({ contract, method, outputMapper, isCall = true, options }) => {
   return function () {
     console.log('============ start ============')
     return new Promise((resolve, reject) => {
-      return MetCoinContract
+      return contract
               .deployed()
               .then(instance => {
                 console.log('Inside sourceFN ------------------------ 1')
                 return (isCall)
                       ? instance[method].call(...Object.values(arguments))
-                      : instance[method](...Object.values(arguments))
+                      : instance[method](...Object.values(arguments), options)
               })
               .then(data => {
                 console.log('Inside sourceFN ------------------------ 2')
@@ -44,10 +44,10 @@ const sourceFn = ({ method, outputMapper, isCall = true }) => {
   } // end of input closure
 }// end of method closure
 
-const createQLType = require('./lib/createQLType')
+const { queryTypes, outputMappers } = require('./lib/createQLType')
 const createFnQueryLines = require('./lib/createFnQueryLines')
 const temporary1 = `
-${createQLType}
+${queryTypes}
 ${createFnQueryLines}
 `
 
@@ -84,10 +84,10 @@ ${createFnQueryLines}
 
 var schema = buildSchema(temporary1);
 
-const other = require('./lib/methods/other')
-const returns2 = require('./lib/methods/returns2')
-const getBalance = require('./lib/methods/getBalance')
-const getBalanceInEth = require('./lib/methods/getBalanceInEth')
+// const other = require('./lib/methods/other')
+// const returns2 = require('./lib/methods/returns2')
+// const getBalance = require('./lib/methods/getBalance')
+// const getBalanceInEth = require('./lib/methods/getBalanceInEth')
 
 // The root provides a resolver function for each API endpoint
 var root = {
@@ -95,53 +95,20 @@ var root = {
     return 'Hello world!';
   },
   getBalance: (args) => {
-    const outputMapper = (data) => {
-      return {
-        value: {
-          string: data.toString(),
-          int: data.toNumber()
-        }
-      }
-    }
-    return sourceFn({ method: 'getBalance', outputMapper })(...Object.values(args))
+    const outputMapper = outputMappers.getBalance
+    return sourceFn({ contract: MetCoinContract, method: 'getBalance', outputMapper })(...Object.values(args))
   },
   getBalanceInEth: (args) => {
-    const outputMapper = (data) => {
-      return {
-        value: {
-          string: data.toString(),
-          int: data.toNumber()
-        }
-      }
-    }
-    return sourceFn({ method: 'getBalanceInEth', outputMapper })(...Object.values(args))
-    // return getBalanceInEth(args)
+    const outputMapper = outputMappers.getBalanceInEth
+    return sourceFn({ contract: MetCoinContract, method: 'getBalanceInEth', outputMapper })(...Object.values(args))
   },
   returns2: (args) => {
-    // return returns2(args)
-    const outputMapper = (data) => {
-      return {
-        value: {
-          string: data[0].toString(),
-          int: data[0].toNumber()
-        },
-        boolean: data[1]
-      }
-    }
-    return sourceFn({ method: 'returns2', outputMapper })(...Object.values(args))
+    const outputMapper = outputMappers.returns2
+    return sourceFn({ contract: MetCoinContract, method: 'returns2', outputMapper })(...Object.values(args))
   },
   other: () => {
-    const outputMapper = (data) => {
-      return {
-        string: data[0],
-        bytes32: data[1],
-        value: {
-          string: data[2].toString(),
-          int: data[2].toNumber()
-        }
-      }
-    }
-    return sourceFn({ method: 'other', outputMapper })()
+    const outputMapper = outputMappers.other
+    return sourceFn({ contract: MetCoinContract, method: 'other', outputMapper })()
   }
 };
 
