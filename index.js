@@ -51,6 +51,16 @@ ${queryTypes}
 ${createFnQueryLines}
 `
 
+const temporary2 = `
+type candy {
+  string: String
+  int: Int
+}
+type Query {
+  candy: candy
+}
+`
+
 // console.log(temporary1)
 //
 // const temporary = `
@@ -88,12 +98,10 @@ var schema = buildSchema(temporary1);
 // const returns2 = require('./lib/methods/returns2')
 // const getBalance = require('./lib/methods/getBalance')
 // const getBalanceInEth = require('./lib/methods/getBalanceInEth')
+// const getCandy = require('./lib/methods/getCandy')
 
 // The root provides a resolver function for each API endpoint
 var root = {
-  hello: () => {
-    return 'Hello world!';
-  },
   getBalance: (args) => {
     const outputMapper = outputMappers.getBalance
     return sourceFn({ contract: MetCoinContract, method: 'getBalance', outputMapper })(...Object.values(args))
@@ -109,6 +117,14 @@ var root = {
   other: () => {
     const outputMapper = outputMappers.other
     return sourceFn({ contract: MetCoinContract, method: 'other', outputMapper })()
+  },
+  candy: () => {
+    const outputMapper = outputMappers.candy
+    return sourceFn({ contract: MetCoinContract, method: 'candy', outputMapper })()
+  },
+  source: () => {
+    const outputMapper = outputMappers.source
+    return sourceFn({ contract: MetCoinContract, method: 'source', outputMapper })()
   }
 };
 

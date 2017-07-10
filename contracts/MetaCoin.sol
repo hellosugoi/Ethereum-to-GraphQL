@@ -9,11 +9,15 @@ import "./ConvertLib.sol";
 
 contract MetaCoin {
 	mapping (address => uint) balances;
+	uint public candy;
+	string public source;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
 	function MetaCoin() {
 		balances[tx.origin] = 10000;
+		candy = 6;
+		source = 'source';
 	}
 
 	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
