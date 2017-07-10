@@ -8,43 +8,9 @@ const MetaCoinArtifact = require('./build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-// let has2 = function(a, b) {
-//   console.log(a)
-//   console.log(b)
-// }
-// let lol = {a: 'a', b:'b'}
-// let tmp = function(args) {
-//   // console.log(arguments)
-//   return has2(...arguments)
-// }
-// tmp(...Object.values(lol))
+const sourceFn = require('./lib/sourceFn')
 
-
-const sourceFn = ({ contract, method, outputMapper, isCall = true, options }) => {
-  return function () {
-    console.log('============ start ============')
-    return new Promise((resolve, reject) => {
-      return contract
-              .deployed()
-              .then(instance => {
-                console.log('Inside sourceFN ------------------------ 1')
-                return (isCall)
-                      ? instance[method].call(...Object.values(arguments))
-                      : instance[method](...Object.values(arguments), options)
-              })
-              .then(data => {
-                console.log('Inside sourceFN ------------------------ 2')
-                return resolve(outputMapper(data))
-              })
-              .catch(e => {
-                console.log('Inside sourceFN error ------------------------ ')
-                return reject(e)
-              })
-    })
-  } // end of input closure
-}// end of method closure
-
-const { queryTypes, outputMappers } = require('./lib/createQLType')
+const { queryTypes, outputMappers, allResolvers } = require('./lib/createQLType')
 const createFnQueryLines = require('./lib/createFnQueryLines')
 const temporary1 = `
 ${queryTypes}
@@ -128,12 +94,12 @@ var root = {
   }
 };
 
-// const root = createdResolvers
+const root2 = allResolvers
 
-var app = express();
+const app = express();
 app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
+  schema,
+  rootValue: root2,
   graphiql: true,
 }));
 app.listen(4000);
