@@ -121,24 +121,39 @@ const getOutputType = (input) => {
 //   }
 // `
 
+const createQLType = require('./lib/createQLType')
+const createFnQueryLines = require('./lib/createFnQueryLines')
+// console.log(createQLType)
+// const temporary = createQLType
+
+const temporary1 = `
+${createQLType}
+${createFnQueryLines}
+`
+
+// console.log(temporary1)
+
 const temporary = `
   type Value {
     string: String
     int: Int
   }
+
   type otherOutput {
     string: String
     bytes32: String
     value: Value
   }
+
   type returns2Output {
     value: Value
     boolean: Boolean
   }
+
   type Query {
     getBalance(addr: String): Value
     getBalanceInEth(addr: String): Value
-    returns2(addr: String): returns2Output
+    returns2(addr: String num: Int): returns2Output
     other: otherOutput
   }
 `
@@ -157,7 +172,7 @@ const temporary = `
 //   }
 // `);
 // var schema = buildSchema(ABISCHEMA);
-var schema = buildSchema(temporary);
+var schema = buildSchema(temporary1);
 
 const other = require('./lib/methods/other')
 const returns2 = require('./lib/methods/returns2')

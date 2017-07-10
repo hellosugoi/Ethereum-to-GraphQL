@@ -32,7 +32,7 @@ contract MetaCoin {
 		return balances[addr];
 	}
 
-	function returns2(address addr) returns(uint, bool) {
+	function returns2(address addr, uint num) returns(uint, bool) {
 		return (balances[addr], true);
 	}
 
