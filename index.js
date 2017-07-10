@@ -131,7 +131,7 @@ ${createQLType}
 ${createFnQueryLines}
 `
 
-// console.log(temporary1)
+console.log(temporary1)
 
 const temporary = `
   type Value {
@@ -150,8 +150,12 @@ const temporary = `
     boolean: Boolean
   }
 
+  type getBalanceOutput {
+    value: Value
+  }
+
   type Query {
-    getBalance(addr: String): Value
+    getBalance(addr: String): getBalanceOutput
     getBalanceInEth(addr: String): Value
     returns2(addr: String num: Int): returns2Output
     other: otherOutput
