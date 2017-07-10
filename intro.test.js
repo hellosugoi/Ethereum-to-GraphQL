@@ -1,13 +1,17 @@
 const { buildSchema, graphql } = require('graphql')
-const { queryTypes, allResolvers } = require('./lib/createQLType')
-const createFnQueryLines = require('./lib/createFnQueryLines')
-const schemaSource = `
-${queryTypes}
-${createFnQueryLines}
-`
+const TFcontract = require('truffle-contract')
+const MetaCoinArtifact = require('./build/contracts/Metacoin')
+const MetCoinContract = TFcontract(MetaCoinArtifact)
+MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-const schema = buildSchema(schemaSource)
-const rootValue = allResolvers
+// 
+// const { genFullSchema, genFullResolver } = require('./lib/index')
+// const schema = genFullSchema({ artifact: MetaCoinArtifact, contract: MetCoinContract })
+// const rootValue = genFullResolver({ artifact: MetaCoinArtifact, contract: MetCoinContract })
+
+const { genGraphQlProperties } = require('./lib/index')
+const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
+
 
 it('should succesfully query a public uint value', async () => {
   const query = `
@@ -96,5 +100,5 @@ it('should succesfully query returns2 with multiple inputs/outputs', async () =>
   }
   `
   const result = await graphql(schema, query, rootValue)
-  expect(result.data).toEqual({ 'returns2': { 'boolean': true, 'value': { 'string': '10000', 'int': 10000 } } })
+  expect(result.data).toEqual({ 'returns2': { 'boolean': true, 'value': { 'string': '0', 'int': 0 } } })
 })
