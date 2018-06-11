@@ -4,14 +4,13 @@ const MetaCoinArtifact = require('./build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-// 
+//
 // const { genFullSchema, genFullResolver } = require('./lib/index')
 // const schema = genFullSchema({ artifact: MetaCoinArtifact, contract: MetCoinContract })
 // const rootValue = genFullResolver({ artifact: MetaCoinArtifact, contract: MetCoinContract })
 
 const { genGraphQlProperties } = require('./lib/index')
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
-
 
 it('should succesfully query a public uint value', async () => {
   const query = `
@@ -32,7 +31,7 @@ it('should succesfully query a source string value', async () => {
   const query = `
     query {
       source {
-    		string
+        string
       }
     }
   `
@@ -74,7 +73,7 @@ it('should succesfully query other with multiple outputs', async () => {
   const query = `
   query {
     other {
-  		string
+      string
       bytes32
       value {
         string

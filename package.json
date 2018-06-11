@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "express": "4.13.4",
     "express-graphql": "^0.6.6",
     "graphql-server-express": "^0.9.0",
@@ -35,10 +39,14 @@
   },
   "devDependencies": {
     "graphql": "^0.10.0",
+    "jest": "^23.1.0",
     "nodemon": "^1.9.1",
     "standard": "^10.0.2"
   },
   "standard": {
-    "globals": [ "it", "expect" ]
+    "globals": [
+      "it",
+      "expect"
+    ]
   }
 }

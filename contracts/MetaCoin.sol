@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.24;
 
 import "./ConvertLib.sol";
 
@@ -8,40 +8,40 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract MetaCoin {
-	mapping (address => uint) balances;
-	uint public candy;
-	string public source;
+  mapping (address => uint) balances;
+  uint public candy;
+  string public source;
 
-	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+  event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-	function MetaCoin() {
-		balances[tx.origin] = 10000;
-		candy = 6;
-		source = 'source';
-	}
+  constructor() public {
+    balances[msg.sender] = 10000;
+    candy = 6;
+    source = "source";
+  }
 
-	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
-		if (balances[msg.sender] < amount) return false;
-		balances[msg.sender] -= amount;
-		balances[receiver] += amount;
-		Transfer(msg.sender, receiver, amount);
-		return true;
-	}
+  function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
+    if (balances[msg.sender] < amount) return false;
+    balances[msg.sender] -= amount;
+    balances[receiver] += amount;
+    emit Transfer(msg.sender, receiver, amount);
+    return true;
+  }
 
-	function getBalanceInEth(address addr) returns(uint){
-		return ConvertLib.convert(getBalance(addr),2);
-	}
+  function getBalanceInEth(address addr) public returns(uint) {
+    return ConvertLib.convert(getBalance(addr), 2);
+  }
 
-	function getBalance(address addr) returns(uint) {
-		return balances[addr];
-	}
+  function getBalance(address addr) public returns(uint) {
+    return balances[addr];
+  }
 
-	function returns2(address addr, uint num) returns(uint, bool) {
-		return (balances[addr], true);
-	}
+  function returns2(address addr, uint num) public returns(uint, bool) {
+    return (balances[addr], true);
+  }
 
-	function other() returns (string, bytes32, uint256) {
-		return ("hey", 0x11, 600);
-	}
+  function other() public returns (string, bytes32, uint256) {
+    return ("hey", 0x11, 600);
+  }
 
 }
