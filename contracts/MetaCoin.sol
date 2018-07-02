@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.4.18;
 
 import "./ConvertLib.sol";
 
@@ -14,7 +14,7 @@ contract MetaCoin {
 
   event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-  constructor() public {
+  function MetaCoin() public {
     balances[msg.sender] = 10000;
     candy = 6;
     source = "source";
@@ -24,7 +24,7 @@ contract MetaCoin {
     if (balances[msg.sender] < amount) return false;
     balances[msg.sender] -= amount;
     balances[receiver] += amount;
-    emit Transfer(msg.sender, receiver, amount);
+    Transfer(msg.sender, receiver, amount);
     return true;
   }
 
@@ -32,16 +32,27 @@ contract MetaCoin {
     return ConvertLib.convert(getBalance(addr), 2);
   }
 
-  function getBalance(address addr) public returns(uint) {
+  function getBalance(address addr) public view returns(uint) {
     return balances[addr];
   }
 
-  function returns2(address addr, uint num) public returns(uint, bool) {
+  function returns2(address addr, uint num) public view returns(uint, bool) {
     return (balances[addr], true);
   }
 
-  function other() public returns (string, bytes32, uint256) {
+  function returns2Bools(address addr, uint num) public view returns(bool, bool) {
+    return (false, true);
+  }
+
+  function returns3() public pure returns (string, bytes32, uint256) {
     return ("hey", 0x11, 600);
+  }
+
+  function returnsArrayInt() public pure returns (uint[]) {
+    uint[] memory tmp = new uint[](2);
+    tmp[0] = 2;
+    tmp[1] = 5;
+    return tmp;
   }
 
 }
