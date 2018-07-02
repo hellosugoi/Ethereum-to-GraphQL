@@ -48,6 +48,10 @@ contract MetaCoin {
     return ("hey", 0x11, 600);
   }
 
+  function returnsSingleUint8() public pure returns (uint8) {
+    return 11;
+  }
+
   function returnsArrayInt() public pure returns (uint[]) {
     uint[] memory tmp = new uint[](2);
     tmp[0] = 2;

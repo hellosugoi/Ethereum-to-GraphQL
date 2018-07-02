@@ -147,3 +147,26 @@ it('should succesfully query returns2 with multiple inputs/outputs', async () =>
     }
   })
 })
+
+it('should succesfully query returnsSingleUint8', async () => {
+  const query = `
+  query {
+    returnsSingleUint8 {
+      uint8_0 {
+        string
+        int
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result.data, null, 2))
+  expect(result.data).toEqual({
+    'returnsSingleUint8': {
+      'uint8_0': {
+        'string': '11',
+        'int': 11
+      }
+    }
+  })
+})
