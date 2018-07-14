@@ -56,6 +56,10 @@ contract MetaCoin {
     return 11;
   }
 
+  function returnsSingleByte32() public pure returns (bytes32) {
+    return 'hello';
+  }
+
   function returnsArrayInt() public pure returns (uint[]) {
     uint[] memory tmp = new uint[](2);
     tmp[0] = 2;

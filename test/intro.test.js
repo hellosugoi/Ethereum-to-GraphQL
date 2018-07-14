@@ -351,3 +351,26 @@ it('should succesfully query returnsArrayBytes', async () => {
     }
   })
 })
+
+it('should succesfully query returnsSingleByte32', async () => {
+  const query = `
+  query {
+    returnsSingleByte32 {
+      bytes32_0 {
+        decoded
+        raw
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsSingleByte32': {
+      'bytes32_0': {
+        'decoded': 'hello',
+        'raw': '0x68656c6c6f000000000000000000000000000000000000000000000000000000'
+      }
+    }
+  })
+})
