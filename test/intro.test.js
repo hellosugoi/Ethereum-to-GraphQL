@@ -266,3 +266,28 @@ it('should succesfully query returnsEnum', async () => {
     }
   })
 })
+
+it('should succesfully query returnsArrayInt', async () => {
+  const query = `
+  query {
+    returnsArrayInt {
+      uint256Arr_0 {
+        string
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsArrayInt': {
+      'uint256Arr_0': [
+        {
+          'string': '2'
+        }, {
+          'string': '5'
+        }
+      ]
+    }
+  })
+})

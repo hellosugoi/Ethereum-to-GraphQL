@@ -9,8 +9,9 @@ MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:85
 
 const { genGraphQlProperties } = require('./lib/index')
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
-console.log('--------- GraphQL Schema ----------')
+// console.log('--------- GraphQL Schema ----------')
 // console.log(rootValue)
+// console.log(schema)
 
 // const app = express()
 // app.use('/graphql', graphqlHTTP({
