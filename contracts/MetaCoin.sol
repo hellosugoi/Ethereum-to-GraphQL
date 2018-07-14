@@ -100,5 +100,24 @@ contract MetaCoin {
     return int(EnumChoice.third);
   }
 
+  function returnsOnlyArrays() public view returns(int[], address[], bytes32[]) {
+    int[] memory tmp1 = new int[](3);
+    tmp1[0] = 2;
+    tmp1[1] = 5;
+    tmp1[2] = 8;
+
+    address[] memory tmp2 = new address[](3);
+    tmp2[0] = 0x04;
+    tmp2[1] = 0x07;
+    tmp2[2] = 0x09;
+
+    bytes32[] memory tmp3 = new bytes32[](3);
+    tmp3[0] = "uno";
+    tmp3[1] = "dos";
+    tmp3[2] = "tres";
+
+    return (tmp1, tmp2, tmp3);
+  }
+
 
 }

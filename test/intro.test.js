@@ -374,3 +374,54 @@ it('should succesfully query returnsSingleByte32', async () => {
     }
   })
 })
+
+it('should succesfully query returnsOnlyArrays', async () => {
+  const query = `
+  query {
+    returnsOnlyArrays {
+      int256Arr_0 {
+        string
+      }
+      addressArr_1
+      bytes32Arr_2 {
+        decoded
+        raw
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsOnlyArrays': {
+      'int256Arr_0': [
+        {
+          'string': '2'
+        }, {
+          'string': '5'
+        }, {
+          'string': '8'
+        }
+      ],
+      'addressArr_1': [
+        '0x0000000000000000000000000000000000000004',
+        '0x0000000000000000000000000000000000000007',
+        '0x0000000000000000000000000000000000000009'
+      ],
+      'bytes32Arr_2': [
+        {
+          'decoded': 'uno',
+          'raw': '0x756e6f0000000000000000000000000000000000000000000000000000000000'
+        },
+        {
+          'decoded': 'dos',
+          'raw': '0x646f730000000000000000000000000000000000000000000000000000000000'
+        },
+        {
+          'decoded': 'tres',
+          'raw': '0x7472657300000000000000000000000000000000000000000000000000000000'
+        }
+      ]
+    }
+  })
+})
