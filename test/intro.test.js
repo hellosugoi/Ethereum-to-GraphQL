@@ -243,3 +243,26 @@ it('should succesfully query returnsaddress', async () => {
     }
   })
 })
+
+it.only('should succesfully query returnsEnum', async () => {
+  const query = `
+  query {
+    returnsEnum {
+      int256_0 {
+        string
+        int
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsEnum': {
+      'int256_0': {
+        'string': '3',
+        'int': 3
+      }
+    }
+  })
+})

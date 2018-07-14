@@ -8,6 +8,8 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract MetaCoin {
+  enum EnumChoice { zero, first, second, third }
+  EnumChoice ec; 
   mapping (address => uint) balances;
   uint public candy;
   string public source;
@@ -73,4 +75,10 @@ contract MetaCoin {
   function returnsaddress() public view returns(address) {
     return owner;
   }
+
+  function returnsEnum() public view returns(int) {
+    return int(EnumChoice.third);
+  }
+
+
 }
