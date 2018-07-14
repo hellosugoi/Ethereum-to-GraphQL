@@ -4,6 +4,8 @@ const MetaCoinArtifact = require('../build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
+const contractOwner = '0x7937d8523b90910d5cb3fb3cf2bd739e13183350' // 0 address with mneonic of "lol dude" in ganache
+
 //
 // const { genFullSchema, genFullResolver } = require('./lib/index')
 // const schema = genFullSchema({ artifact: MetaCoinArtifact, contract: MetCoinContract })
@@ -221,6 +223,23 @@ it('should succesfully query returnsMixedNamedInt', async () => {
         'string': '14',
         'int': 14
       }
+    }
+  })
+})
+
+it('should succesfully query returnsaddress', async () => {
+  const query = `
+  query {
+    returnsaddress {
+      address_0
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result.data, null, 2))
+  expect(result.data).toEqual({
+    'returnsaddress': {
+      'address_0': contractOwner
     }
   })
 })

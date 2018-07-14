@@ -11,6 +11,7 @@ contract MetaCoin {
   mapping (address => uint) balances;
   uint public candy;
   string public source;
+  address owner;
 
   event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
@@ -18,6 +19,7 @@ contract MetaCoin {
     balances[msg.sender] = 10000;
     candy = 6;
     source = "source";
+    owner = msg.sender;
   }
 
   function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
@@ -68,5 +70,7 @@ contract MetaCoin {
     return (num, 14);
   }
 
-
+  function returnsaddress() public view returns(address) {
+    return owner;
+  }
 }

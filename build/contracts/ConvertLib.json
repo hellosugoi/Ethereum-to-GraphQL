@@ -300,8 +300,13 @@
       "events": {},
       "links": {},
       "address": "0x64f031136bc472aa95f52b7c81d23f6aaedfa47d"
+    },
+    "1531526660755": {
+      "events": {},
+      "links": {},
+      "address": "0xaf8ce0349f81010e034ba9dfcd5aa6126e0a0c20"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-07-13T23:57:42.823Z"
+  "updatedAt": "2018-07-14T00:06:44.077Z"
 }
