@@ -103,7 +103,10 @@ it('should succesfully query returns3 with multiple outputs', async () => {
   query {
     returns3 {
       string_0
-      bytes32_1
+      bytes32_1 {
+        raw
+        decoded
+      }
       uint256_2 {
         string
         int
@@ -116,7 +119,10 @@ it('should succesfully query returns3 with multiple outputs', async () => {
   expect(result.data).toEqual({
     'returns3': {
       'string_0': 'hey',
-      'bytes32_1': '0x0000000000000000000000000000000000000000000000000000000000000011',
+      'bytes32_1': {
+        'raw': '0x0000000000000000000000000000000000000000000000000000000000000011',
+        'decoded': '\u0011'
+      },
       'uint256_2': {
         'string': '600',
         'int': 600
@@ -317,7 +323,10 @@ it('should succesfully query returnsArrayBytes', async () => {
   const query = `
   query {
     returnsArrayBytes {
-      bytes32Arr_0
+      bytes32Arr_0 {
+        decoded
+        raw
+      }
     }
   }
   `
@@ -326,9 +335,18 @@ it('should succesfully query returnsArrayBytes', async () => {
   expect(result.data).toEqual({
     'returnsArrayBytes': {
       'bytes32Arr_0': [
-        'uno', // '0x756e6f0000000000000000000000000000000000000000000000000000000000',
-        'dos', // '0x646f730000000000000000000000000000000000000000000000000000000000',
-        'tres' // '0x7472657300000000000000000000000000000000000000000000000000000000'
+        {
+          'decoded': 'uno',
+          'raw': '0x756e6f0000000000000000000000000000000000000000000000000000000000'
+        },
+        {
+          'decoded': 'dos',
+          'raw': '0x646f730000000000000000000000000000000000000000000000000000000000'
+        },
+        {
+          'decoded': 'tres',
+          'raw': '0x7472657300000000000000000000000000000000000000000000000000000000'
+        }
       ]
     }
   })
