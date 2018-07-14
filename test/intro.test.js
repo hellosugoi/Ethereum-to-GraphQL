@@ -244,7 +244,7 @@ it('should succesfully query returnsaddress', async () => {
   })
 })
 
-it.only('should succesfully query returnsEnum', async () => {
+it('should succesfully query returnsEnum', async () => {
   const query = `
   query {
     returnsEnum {
