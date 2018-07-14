@@ -63,6 +63,15 @@ contract MetaCoin {
     return tmp;
   }
 
+  function returnsArrayAddresses() public pure returns(address[]) {
+    address[] memory tmp = new address[](3);
+    tmp[0] = 0x04;
+    tmp[1] = 0x07;
+    tmp[2] = 0x09;
+    return tmp;
+  }
+
+
   function returnsNamedInt() public pure returns(uint32 tweleve) {
     tweleve = 12;
   }

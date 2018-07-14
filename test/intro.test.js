@@ -291,3 +291,24 @@ it('should succesfully query returnsArrayInt', async () => {
     }
   })
 })
+
+it('should succesfully query returnsArrayAddresses', async () => {
+  const query = `
+  query {
+    returnsArrayAddresses {
+      addressArr_0
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsArrayAddresses': {
+      'addressArr_0': [
+        '0x0000000000000000000000000000000000000004',
+        '0x0000000000000000000000000000000000000007',
+        '0x0000000000000000000000000000000000000009'
+      ]
+    }
+  })
+})
