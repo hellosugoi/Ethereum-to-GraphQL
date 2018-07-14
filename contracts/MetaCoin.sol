@@ -71,6 +71,13 @@ contract MetaCoin {
     return tmp;
   }
 
+  function returnsArrayBytes() public pure returns(bytes32[]) {
+    bytes32[] memory tmp = new bytes32[](3);
+    tmp[0] = "uno";
+    tmp[1] = "dos";
+    tmp[2] = "tres";
+    return tmp;
+  }
 
   function returnsNamedInt() public pure returns(uint32 tweleve) {
     tweleve = 12;

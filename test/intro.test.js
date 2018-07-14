@@ -312,3 +312,24 @@ it('should succesfully query returnsArrayAddresses', async () => {
     }
   })
 })
+
+it('should succesfully query returnsArrayBytes', async () => {
+  const query = `
+  query {
+    returnsArrayBytes {
+      bytes32Arr_0
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result, null, 2))
+  expect(result.data).toEqual({
+    'returnsArrayBytes': {
+      'bytes32Arr_0': [
+        'uno', // '0x756e6f0000000000000000000000000000000000000000000000000000000000',
+        'dos', // '0x646f730000000000000000000000000000000000000000000000000000000000',
+        'tres' // '0x7472657300000000000000000000000000000000000000000000000000000000'
+      ]
+    }
+  })
+})
