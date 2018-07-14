@@ -59,4 +59,14 @@ contract MetaCoin {
     return tmp;
   }
 
+  function returnsNamedInt() public pure returns(uint32 tweleve) {
+    tweleve = 12;
+  }
+
+  function returnsMixedNamedInt() public pure returns(uint16 num, uint32) {
+    num = 13;
+    return (num, 14);
+  }
+
+
 }

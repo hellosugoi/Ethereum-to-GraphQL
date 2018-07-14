@@ -170,3 +170,57 @@ it('should succesfully query returnsSingleUint8', async () => {
     }
   })
 })
+
+it('should succesfully query returnsNamedInt', async () => {
+  const query = `
+  query {
+    returnsNamedInt {
+      tweleve {
+        string
+        int
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result.data, null, 2))
+  expect(result.data).toEqual({
+    'returnsNamedInt': {
+      'tweleve': {
+        'string': '12',
+        'int': 12
+      }
+    }
+  })
+})
+
+it('should succesfully query returnsMixedNamedInt', async () => {
+  const query = `
+  query {
+    returnsMixedNamedInt {
+      num {
+        string
+        int
+      }
+      uint32_1 {
+        string
+        int
+      }
+    }
+  }
+  `
+  const result = await graphql(schema, query, rootValue)
+  // console.log(JSON.stringify(result.data, null, 2))
+  expect(result.data).toEqual({
+    'returnsMixedNamedInt': {
+      'num': {
+        'string': '13',
+        'int': 13
+      },
+      'uint32_1': {
+        'string': '14',
+        'int': 14
+      }
+    }
+  })
+})
