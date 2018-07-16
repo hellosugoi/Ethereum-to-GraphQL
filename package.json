@@ -1,15 +1,16 @@
 {
-  "name": "apollo-starter-kit",
-  "version": "0.1.0",
-  "description": "Minimal set of code to write a GraphQL server with Apollo graphql-tools",
+  "name": "ethereum-to-graphql",
+  "version": "0.2.0",
+  "description": "Create a graphql server to Ethereum smart contracts",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node",
+    "start": "node server.js",
     "test": "jest test/*",
     "lint": "eslint ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apollostack/apollo-starter-kit.git"
+    "url": "git+https://github.com/hellosugoi/Ethereum-to-GraphQL"
   },
   "keywords": [
     "Node.js",
@@ -19,26 +20,20 @@
     "Apollo",
     "Meteor"
   ],
-  "author": "Jonas Helfer <jonas@helfer.email>",
+  "author": "Angello Pozo <angello@hellosugoi.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apollostack/apollo-starter-kit/issues"
+    "url": "https://github.com/hellosugoi/Ethereum-to-GraphQL/issues"
   },
-  "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
+  "homepage": "https://github.com/hellosugoi/Ethereum-to-GraphQL#readme",
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "express": "4.13.4",
-    "express-graphql": "^0.6.6",
-    "graphql-server-express": "^0.9.0",
-    "graphql-tools": "^1.0.0",
     "truffle-contract": "^2.0.1",
-    "web3": "^0.19.1"
+    "web3": "^0.19.1",
+    "graphql": "^0.10.0"
   },
   "devDependencies": {
-    "graphql": "^0.10.0",
+    "express": "4.13.4",
+    "express-graphql": "^0.6.6",
     "jest": "^23.1.0",
     "nodemon": "^1.9.1",
     "standard": "^10.0.2"
