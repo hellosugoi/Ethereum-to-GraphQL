@@ -11,7 +11,7 @@ const MetaCoinArtifact = require('./build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-const { genGraphQlProperties } = require('./lib/index')
+const { genGraphQlProperties } = require('./lib/index') // require('ethereum-to-graphql)
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
 
 const GRAPHQL_PORT = 4000
