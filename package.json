@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "node server.js",
+    "build-sc": "truffle migrate --network development --reset",
     "test": "jest test/*",
     "lint": "eslint ."
   },
