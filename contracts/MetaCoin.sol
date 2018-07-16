@@ -8,9 +8,12 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract MetaCoin {
+  enum EnumChoice { zero, first, second, third }
+  EnumChoice ec; 
   mapping (address => uint) balances;
   uint public candy;
   string public source;
+  address owner;
 
   event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
@@ -18,6 +21,7 @@ contract MetaCoin {
     balances[msg.sender] = 10000;
     candy = 6;
     source = "source";
+    owner = msg.sender;
   }
 
   function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
@@ -52,11 +56,68 @@ contract MetaCoin {
     return 11;
   }
 
+  function returnsSingleByte32() public pure returns (bytes32) {
+    return 'hello';
+  }
+
   function returnsArrayInt() public pure returns (uint[]) {
     uint[] memory tmp = new uint[](2);
     tmp[0] = 2;
     tmp[1] = 5;
     return tmp;
   }
+
+  function returnsArrayAddresses() public pure returns(address[]) {
+    address[] memory tmp = new address[](3);
+    tmp[0] = 0x04;
+    tmp[1] = 0x07;
+    tmp[2] = 0x09;
+    return tmp;
+  }
+
+  function returnsArrayBytes() public pure returns(bytes32[]) {
+    bytes32[] memory tmp = new bytes32[](3);
+    tmp[0] = "uno";
+    tmp[1] = "dos";
+    tmp[2] = "tres";
+    return tmp;
+  }
+
+  function returnsNamedInt() public pure returns(uint32 tweleve) {
+    tweleve = 12;
+  }
+
+  function returnsMixedNamedInt() public pure returns(uint16 num, uint32) {
+    num = 13;
+    return (num, 14);
+  }
+
+  function returnsaddress() public view returns(address) {
+    return owner;
+  }
+
+  function returnsEnum() public view returns(int) {
+    return int(EnumChoice.third);
+  }
+
+  function returnsOnlyArrays() public view returns(int[], address[], bytes32[]) {
+    int[] memory tmp1 = new int[](3);
+    tmp1[0] = 2;
+    tmp1[1] = 5;
+    tmp1[2] = 8;
+
+    address[] memory tmp2 = new address[](3);
+    tmp2[0] = 0x04;
+    tmp2[1] = 0x07;
+    tmp2[2] = 0x09;
+
+    bytes32[] memory tmp3 = new bytes32[](3);
+    tmp3[0] = "uno";
+    tmp3[1] = "dos";
+    tmp3[2] = "tres";
+
+    return (tmp1, tmp2, tmp3);
+  }
+
 
 }
