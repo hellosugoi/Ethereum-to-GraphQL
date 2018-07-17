@@ -182,15 +182,17 @@ To help develop, you will need to have [truffle](https://github.com/trufflesuite
 There are 3 components to testing/developing for this repo: Smart Contracts, Ganache/Ganache-cli, and Jest. You have to first launch Ganache/Ganache-cli, then Deploy your smart contracts via `npm run build-sc`, and lastly you run `npm run test`. You only have to do `npm run build-sc` if you modify the smart contract, or if you restarted you Ganache/Ganache-cli command. If you only modify the javascript code, then you do `npm run test` to run tests.
 
 #### Starting fresh or ganache restart/refresh
-1. **Start ganache**
+1. **Start Ganache**
 2. `npm run build-sc`
 3. `npm run test`
 
 #### Modified the Smart Contracts
+**Ganache is running already**
 1. `npm run build-sc`
 2. `npm run test`
 
 #### Modified only Javascript and already did fresh start
+**Ganache is running already**
 1. `npm run test`
 
 ## GraphiQl for Testing
