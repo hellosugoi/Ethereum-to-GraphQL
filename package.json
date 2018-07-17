@@ -1,6 +1,6 @@
 {
   "name": "ethereum-to-graphql",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create a graphql server to Ethereum smart contracts",
   "main": "lib/index.js",
   "scripts": {
