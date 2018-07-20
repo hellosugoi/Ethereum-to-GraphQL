@@ -28,16 +28,16 @@
   },
   "homepage": "https://github.com/hellosugoi/Ethereum-to-GraphQL#readme",
   "dependencies": {
-    "web3": "^0.19.1",
-    "graphql": "^0.10.0"
+    "graphql": "^0.10.0",
+    "web3": "^0.19.1"
   },
   "devDependencies": {
-    "truffle-contract": "^2.0.1",
-    "express": "4.13.4",
+    "express": "^4.16.3",
     "express-graphql": "^0.6.6",
     "jest": "^23.1.0",
     "nodemon": "^1.9.1",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "truffle-contract": "^2.0.1"
   },
   "standard": {
     "globals": [
