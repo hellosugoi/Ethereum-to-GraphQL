@@ -6,10 +6,11 @@ const express = require('express')
 const graphqlHTTP = require('express-graphql')
 
 const Web3 = require('web3')
+const provider = new Web3.providers.HttpProvider('http://localhost:9545')
 const TFcontract = require('truffle-contract')
 const MetaCoinArtifact = require('./build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
-MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
+MetCoinContract.setProvider(provider)
 
 const { genGraphQlProperties } = require('./lib/index') // require('ethereum-to-graphql)
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
@@ -23,6 +24,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }))
 app.listen(GRAPHQL_PORT, () => console.log(
-  `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql
+  `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphql
 Only for Development purposes!`
 ))

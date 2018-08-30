@@ -11,7 +11,7 @@ contract MetaCoin {
   enum EnumChoice { zero, first, second, third }
   EnumChoice ec; 
   mapping (address => uint) balances;
-  uint public candy;
+  uint public publicUint;
   string public source;
   address owner;
 
@@ -19,7 +19,7 @@ contract MetaCoin {
 
   function MetaCoin() public {
     balances[msg.sender] = 10000;
-    candy = 6;
+    publicUint = 6;
     source = "source";
     owner = msg.sender;
   }

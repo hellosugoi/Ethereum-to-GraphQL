@@ -15,24 +15,27 @@ This package will retrun the schema and rootValue that you can pass into your Gr
 ```javascript
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
-
 const Web3 = require('web3')
+
+// Configure truffle contract
 const TFcontract = require('truffle-contract')
 const MetaCoinArtifact = require('./build/contracts/Metacoin')
 const MetCoinContract = TFcontract(MetaCoinArtifact)
 MetCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
+// Use package to create the garphql schema and resolver
 const { genGraphQlProperties } = require('ethereum-to-graphql')
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetCoinContract })
 
-const GRAPHQL_PORT = 4000
-
+// create server with express
 const app = express()
 app.use('/graphql', graphqlHTTP({
   schema,
   rootValue,
   graphiql: true
 }))
+
+const GRAPHQL_PORT = 4000
 app.listen(GRAPHQL_PORT, () => console.log(
   `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql
 Only for Development purposes!`
@@ -179,7 +182,9 @@ To help develop, you will need to have [truffle](https://github.com/trufflesuite
 
 ## Testing
 
-There are 3 components to testing/developing for this repo: Smart Contracts, Ganache/Ganache-cli, and Jest. You have to first launch Ganache/Ganache-cli, then Deploy your smart contracts via `npm run build-sc`, and lastly you run `npm run test`. You only have to do `npm run build-sc` if you modify the smart contract, or if you restarted you Ganache/Ganache-cli command. If you only modify the javascript code, then you do `npm run test` to run tests.
+There are 3 components to testing/developing for this repo: Smart Contracts, Ganache/Ganache-cli, and Jest. To test, you have to first launch Ganache/Ganache-cli, then Deploy your smart contracts via `npm run build-sc`, and lastly you run `npm run test`. You only have to do `npm run build-sc` if you modify the smart contract, or if you restarted you Ganache/Ganache-cli command. If you only modify the javascript code, then you do `npm run test` to run tests.
+
+Special note about ganache/ganache-cli, they start on different ports (8545, 9545) respectively. The test suit has been configured to work with ganache the app. The default account in ganache is staticly set to `0x8B5D608836459Ddb0725C64036569c7630a82FBF`. If you use ganache-cli, you will need to set the correct account in `test/intro.test.js` line 8.
 
 #### Starting fresh or ganache restart/refresh
 1. **Start Ganache**
@@ -197,4 +202,4 @@ There are 3 components to testing/developing for this repo: Smart Contracts, Gan
 
 ## GraphiQl for Testing
 
-There is also a gaphiQL server in this repo. You run in by calling `npm run start`. This will allow you to test graqphQL queries locally.
+There is also a gaphiQL server in this repo. You run in by calling `npm run start`. This will allow you to test graqphQL queries locally at `localhost:4000/graphql`

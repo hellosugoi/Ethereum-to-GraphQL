@@ -2,9 +2,10 @@ const { graphql } = require('graphql')
 const TFcontract = require('truffle-contract')
 const MetaCoinArtifact = require('../build/contracts/Metacoin')
 const MetaCoinContract = TFcontract(MetaCoinArtifact)
-MetaCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
+const Web3 = require('web3')
 
-const contractOwner = '0x7937d8523b90910d5cb3fb3cf2bd739e13183350' // 0 address with mneonic of "lol dude" in ganache
+MetaCoinContract.setProvider(new Web3.providers.HttpProvider('http://localhost:9545'))
+const contractOwner = '0x8B5D608836459Ddb0725C64036569c7630a82FBF' // 0 address with mneonic of "lol dude" in ganache
 
 const { genGraphQlProperties } = require('../lib/index')
 const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact, contract: MetaCoinContract })
@@ -12,7 +13,7 @@ const { schema, rootValue } = genGraphQlProperties({ artifact: MetaCoinArtifact,
 it('should succesfully query a public uint value', async () => {
   const query = `
     query {
-      candy {
+      publicUint {
         uint256_0 {
           string
           int
@@ -22,7 +23,7 @@ it('should succesfully query a public uint value', async () => {
   `
   const result = await graphql(schema, query, rootValue)
   expect(result.data).toEqual({
-    'candy': {
+    'publicUint': {
       'uint256_0': {
         'string': '6',
         'int': 6
